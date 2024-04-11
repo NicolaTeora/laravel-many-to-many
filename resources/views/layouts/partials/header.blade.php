@@ -11,12 +11,23 @@
                     <li class="nav-item">
                         <a @class(['nav-link', 'active' => Route::currentRouteName() == 'home']) aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
+
+                    {{-- rotta index project --}}
                     <li class="nav-item">
                         <a @class([
                             'nav-link',
                             'active' => Route::currentRouteName() == 'admin.projects.index',
                         ]) aria-current="page"
                             href="{{ route('admin.projects.index') }}">Projects</a>
+                    </li>
+
+                    {{-- rotta index type --}}
+                    <li class="nav-item">
+                        <a @class([
+                            'nav-link',
+                            'active' => Route::currentRouteName() == 'admin.types.index',
+                        ]) aria-current="page"
+                            href="{{ route('admin.types.index') }}">Types</a>
                     </li>
                     <li class="nav-item">
                         <a @class([

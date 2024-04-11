@@ -17,6 +17,9 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="card-footer">
+                        {{ dump($type->projects) }}
+                    </div>
                 </div>
                 <div class="btn btn-primary my-3">
                     <a class="badge text-bg-primary fs-6" href="{{ route('admin.types.index') }}">Back the types</a>

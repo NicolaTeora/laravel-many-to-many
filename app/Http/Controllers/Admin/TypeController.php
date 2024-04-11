@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\Type;
 
@@ -51,9 +52,9 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * //@return \Illuminate\Http\Response
      */
-    public function show(Type $type)
+    public function show(Type $type, Project $project)
     {
-        return view('admin.types.show', compact('type'));
+        return view('admin.types.show', compact('type', 'project'));
     }
 
     /**

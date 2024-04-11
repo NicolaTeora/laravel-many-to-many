@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h2 class="fs-4 text-secondary my-4">
-            My Projects
+            Types
         </h2>
 
         <div class="container">

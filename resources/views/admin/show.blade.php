@@ -14,7 +14,7 @@
                         <ul>
                             <li>
                                 <strong>Type work:</strong>
-                                {{ dump($type->name) }}
+                                {{ $project->type->name }}
                             </li>
                             <li>
                                 <strong>Description of the project: </strong>

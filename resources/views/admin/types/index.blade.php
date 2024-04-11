@@ -41,7 +41,8 @@
         <a class="badge text-bg-warning text-decoration-none fs-6" href="{{ route('admin.dashboard') }}">Back Dashboard</a>
         <a class="badge text-bg-primary text-decoration-none fs-6" href="{{ route('home') }}">Back Home</a>
         <a class="badge text-bg-success text-decoration-none fs-6" href="{{ route('admin.types.create') }}">Add
-            type</a>
+            type
+        </a>
 
     </div>
 @endsection
@@ -54,11 +55,15 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminare {{ $type['title'] }} ??</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminare {{ $type->title }} ??</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         Procedere alla cancellazione della tipologia??
+                        <strong>
+                            Attenzione!!
+                        </strong>
+                        <p>Probabili Progetti associati, l'operazione potrebbe eliminare anch'essi!</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>

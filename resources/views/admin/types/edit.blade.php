@@ -16,16 +16,16 @@
         <h1 class="fs-4 text-secondary my-4">
             {{ __('Add new type') }}
         </h1>
-        <form class="row" action="{{ route('admin.types.store') }}" method="POST">
+        <form class="row" action="{{ route('admin.types.update', $type) }}" method="POST">
+            @method('PATCH')
             @csrf
-            {{-- input Type --}}
+            {{-- edit Nome --}}
             <div class="col-4">
                 <label for="name" class="form-label">Nome</label>
-                <input type="name" name="name" id="name" class="form-control">
-
+                <input type="name" name="name" id="name" class="form-control" value="{{ $type->name }}">
             </div>
 
-            {{-- bottone salvataggio --}}
+            {{-- bottone conferma edit --}}
             <div class="col-12 my-3">
                 <button class="btn btn-success">salva</button>
             </div>

@@ -25,6 +25,8 @@ class TypeController extends Controller
      */
     public function create()
     {
+        $types = Type::all();
+        return view('admin.types.create', compact('types'));
     }
 
     /**
@@ -35,50 +37,60 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $type = new Type;
+        $type->fill($data);
+        $type->save();
+
+        return redirect()->route('admin.types.show', $type);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Type  $type
      * //@return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Type $type)
     {
-        //
+        return view('admin.types.show', compact('type'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Type  $project
      * //@return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Type $type)
     {
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Type  $project
      * //@return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request, Type $type)
     {
-        //
+        $data = $request->all();
+        $type->update($data);
+
+        return redirect()->route('admin.types.show', $type);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Type  $project
      * //@return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.types.index');
     }
 }

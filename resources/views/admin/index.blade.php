@@ -26,7 +26,7 @@
                                 <th scope="row">{{ $project->id }}</th>
                                 <td>{{ $project->title }}</td>
                                 <td>{{ $project->description }}</td>
-                                <td>{{ $project->type->name }}</td>
+                                <td>{{ $project->type?->name }}</td>
 
                                 <td>
                                     <a class="badge text-decoration-none text-bg-primary fs-6"

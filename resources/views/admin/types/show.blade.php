@@ -13,12 +13,22 @@
                     <div class="card-body">
                         <ul>
                             <li>
-                                <strong>{{ $type->name }}</strong>
+                                <h3>{{ $type->name }}</h3>
                             </li>
                         </ul>
                     </div>
                     <div class="card-footer">
-                        {{ dump($type->projects) }}
+                        @foreach ($type->projects as $project)
+                            <ul>
+                                <li>ID: {{ $project->id }}</li>
+                                <li>
+                                    <strong>Titolo: {{ $project->title }}</strong>
+                                </li>
+                                <li>Descrizione: <br>
+                                    {{ $project->description }}
+                                </li>
+                            </ul>
+                        @endforeach
                     </div>
                 </div>
                 <div class="btn btn-primary my-3">

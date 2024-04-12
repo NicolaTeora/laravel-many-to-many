@@ -16,6 +16,7 @@
                             <th scope="col">Title</th>
                             <th scope="col">description</th>
                             <th scope="col">type</th>
+                            <th scope="col">technology</th>
                             <th scope="col">actions</th>
 
                         </tr>
@@ -27,7 +28,15 @@
                                 <td>{{ $project->title }}</td>
                                 <td>{{ $project->description }}</td>
                                 <td>{{ $project->type?->name }}</td>
-
+                                <td>
+                                    @foreach ($project->technologies as $technology)
+                                        {{ $technology->name }} @unless ($loop->last)
+                                            ,
+                                        @else
+                                            .
+                                        @endunless
+                                    @endforeach
+                                </td>
                                 <td>
                                     <a class="badge text-decoration-none text-bg-primary fs-6"
                                         href="{{ route('admin.projects.show', $project->id) }}">info</a>

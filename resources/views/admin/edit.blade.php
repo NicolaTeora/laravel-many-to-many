@@ -34,9 +34,25 @@
                 </select>
             </div>
             {{-- edit Descrizione --}}
-            <div class="col-12">
+            <div class="col-8">
                 <label for="description" class="form-label">Descrizione</label>
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ $project['description'] }}"</textarea>
+            </div>
+            {{-- input tecnologia --}}
+            <div class="col-4 my-3">
+                <label class="form-label">Technologies</label>
+
+                <div class="form-check @error('technologies') is-invalid @enderror p-0">
+                    @foreach ($technologies as $technology)
+                        <input type="checkbox" id="tag-{{ $technology->id }}" value="{{ $technology->id }}"
+                            name="technologies[]" class="form-check-control"
+                            @if (in_array($technology->id, old('technologies', $project_technologies ?? []))) checked @endif>
+                        <label for="tag-{{ $technology->id }}">
+                            {{ $technology->name }}
+                        </label>
+                        <br>
+                    @endforeach
+                </div>
             </div>
             {{-- bottone conferma edit --}}
             <div class="col-12 my-3">

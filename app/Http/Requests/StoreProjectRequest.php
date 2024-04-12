@@ -26,7 +26,8 @@ class StoreProjectRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'type_id' => 'required|exists:types,id'
+            'type_id' => 'required|exists:types,id',
+            'technologies' => 'nullable|exists:technologies,id'
         ];
     }
 
@@ -43,6 +44,7 @@ class StoreProjectRequest extends FormRequest
             'title.string' => 'Il titolo non puo contenere numeri',
             'title.max' => 'Il titolo puo contenere {max} caratteri',
             'description.required' => 'Dai una descrizione al progetto',
+            'technologies.exists' => 'le technologies selezionati non sono validi',
         ];
     }
 }

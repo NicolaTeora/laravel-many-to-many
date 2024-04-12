@@ -7,7 +7,9 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Requests\StoreProjectRequest;
+use App\Models\Technology;
 use App\Models\Type;
+use Illuminate\Support\Arr;
 
 class ProjectController extends Controller
 {
@@ -29,7 +31,9 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.create', compact('types'));
+        $project = new Project;
+        $technologies = Technology::orderBy('name')->get();
+        return view('admin.create', compact('types', 'technologies'));
     }
 
     /**
@@ -45,6 +49,8 @@ class ProjectController extends Controller
         $project = new Project;
         $project->fill($data);
         $project->save();
+
+        if (Arr::exists($data, "technologies")) $project->technologies()->attach($data["technologies"]);
 
         return redirect()->route('admin.projects.show', $project);
     }
@@ -69,7 +75,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.edit', compact('project', 'types'));
+        $technologies = Technology::orderBy('name')->get();
+        $project_technologies = $project->technologies->pluck('id')->toArray();
+        return view('admin.edit', compact('project', 'types', 'technologies', 'project_technologies'));
     }
 
     /**

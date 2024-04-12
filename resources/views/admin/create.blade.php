@@ -17,12 +17,12 @@
         <form class="row" action="{{ route('admin.projects.store') }}" method="POST">
             @csrf
             {{-- input Titolo --}}
-            <div class="col-4">
+            <div class="col-6">
                 <label for="title" class="form-label">Titolo</label>
                 <input type="text" name="title" id="title" class="form-control">
             </div>
             {{-- input Type --}}
-            <div class="col-4">
+            <div class="col-6">
                 <label for="type_id" class="form-label">Tipo</label>
                 <select class="form-select" id="type_id" name="type_id">
                     @foreach ($types as $type)
@@ -31,10 +31,27 @@
                     @endforeach
                 </select>
             </div>
+
             {{-- input descrizione --}}
-            <div class="col-12">
+            <div class="col-8 my-3">
                 <label for="description" class="form-label">Descrizione</label>
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
+            {{-- input tecnologia --}}
+            <div class="col-4 my-3">
+                <label class="form-label">Technologies</label>
+
+                <div class="form-check @error('technologies') is-invalid @enderror p-0">
+                    @foreach ($technologies as $technology)
+                        <input type="checkbox" id="tag-{{ $technology->id }}" value="{{ $technology->id }}"
+                            name="technologies[]" class="form-check-control"
+                            @if (in_array($technology->id, old('technologies', $project_technologies ?? []))) checked @endif>
+                        <label for="tag-{{ $technology->id }}">
+                            {{ $technology->name }}
+                        </label>
+                        <br>
+                    @endforeach
+                </div>
             </div>
             {{-- bottone salvataggio --}}
             <div class="col-12 my-3">

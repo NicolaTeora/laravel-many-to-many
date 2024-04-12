@@ -17,6 +17,18 @@
                                 {{ $project->type->name }}
                             </li>
                             <li>
+                                <strong>Technologies:</strong>
+                                @forelse ($project->technologies as $technology)
+                                    {{ $technology->name }} @unless ($loop->last)
+                                        ,
+                                    @else
+                                        .
+                                    @endunless
+                                @empty
+                                    Nessuna tecnologia associata
+                                @endforelse
+                            </li>
+                            <li>
                                 <strong>Description of the project: </strong>
                                 {{ $project->description }}
                             </li>

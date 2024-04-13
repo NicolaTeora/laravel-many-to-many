@@ -32,6 +32,15 @@
                                 <strong>Description of the project: </strong>
                                 {{ $project->description }}
                             </li>
+                            @if (!empty($project->image))
+                                <li>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <img src="{{ asset('storage/' . $project->image) }}" alt="">
+                                        </div>
+                                    </div>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

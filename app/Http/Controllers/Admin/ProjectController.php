@@ -10,6 +10,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -46,6 +47,7 @@ class ProjectController extends Controller
     {
         $request->validated();
         $data = $request->all();
+        Storage::put('uploads/projects', $data['image']);
         $project = new Project;
         $project->fill($data);
         $project->save();

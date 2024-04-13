@@ -102,6 +102,10 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->all();
+        //recupero path del file(image)
+        $img_path = Storage::put('uploads/projects', $data['image']);
+        $project->image = $img_path;
+
         $project->update($data);
 
         if (Arr::exists($data, "technologies"))

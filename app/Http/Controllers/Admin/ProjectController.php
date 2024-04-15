@@ -55,9 +55,12 @@ class ProjectController extends Controller
         //fillare i dati ricevuti dal form
         $project->fill($data);
 
-        //recupero path del file(image)
-        $img_path = Storage::put('uploads/projects', $data['image']);
-        $project->image = $img_path;
+        // se inserisco nuova img
+        if (Arr::exists($data, 'image')) {
+            //recupero path del file(image)
+            $img_path = Storage::put('uploads/projects', $data['image']);
+            $project->image = $img_path;
+        }
         //salvo il project nel database
         $project->save();
 
@@ -102,9 +105,19 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->all();
-        //recupero path del file(image)
-        $img_path = Storage::put('uploads/projects', $data['image']);
-        $project->image = $img_path;
+
+        // se inserisco nuova img
+        if (Arr::exists($data, 'image')) {
+            // se esisteva gia un'img...
+            if (!empty($project->image)) {
+                // ...la cancello
+                Storage::delete($project->image);
+            }
+            //recupero nuova img
+            $img_path = Storage::put('uploads/projects', $data['image']);
+            $project->image = $img_path;
+        }
+
 
         $project->update($data);
 

@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            {{-- todo: input file(image) --}}
+            {{-- input file(image) --}}
             <div class="col-8">
                 <div class="my-3 input-group">
                     <input type="file" name="image" id="image" class="form-control">
